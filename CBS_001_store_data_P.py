@@ -21,7 +21,7 @@ from pathlib import Path
 # 7233      : Overledenen; doodsoorzaak (uitgebreide lijst), leeftijd, geslacht
 # ------------------------------------------------------------------------------
 
-identifier = '37556'
+identifier = '70895ned'
 
 # get current directory
 root = Path.cwd()

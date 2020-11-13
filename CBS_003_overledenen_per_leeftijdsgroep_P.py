@@ -6,6 +6,7 @@
 #   Versiegeschiedenis:
 #   1.0     02-11-2020: Eerste versie
 #   1.1     09-11-2020: Ophalen data uit subdirectory
+#   1.2     13-11-2020: Scherm maximaliseren aangepast
 #
 # =========================================================================
 
@@ -95,7 +96,10 @@ fig.suptitle('Totaal aantal sterfgevallen per week. Totaal en naar leeftijdsgroe
 # Text buiten het plotgebied (0,0 is bottom left, 1.1 is top right)
 plt.gcf().text(0.85, 0.05, 'Bron: CBS, dataset 70895ned', fontsize=6)
 
-# Maximaliseren op het scherm
-manager = plt.get_current_fig_manager()
-manager.window.state('zoomed')
-plt.show()
+# Maximaliseren op het scherm - werkt niet op elke PC, vandaar 'try'
+try:
+    manager = plt.get_current_fig_manager()
+    manager.window.state('zoomed')
+    plt.show()
+except:
+    plt.show()

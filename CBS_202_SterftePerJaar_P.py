@@ -5,6 +5,7 @@
 #
 #   Versiegeschiedenis:
 #   1.0     09-11-2020: Eerste versie
+#   1.1     13-11-2020: Schemrm maximaliseren aangepast
 #
 # =========================================================================
 
@@ -79,8 +80,10 @@ ax.annotate(
 # Text buiten het plotgebied (0,0 is bottom left, 1.1 is top right)
 plt.gcf().text(0.85, 0.05, 'Bron: CBS, dataset 37556', fontsize=6)
 
-# Maximaliseren op het scherm
-manager = plt.get_current_fig_manager()
-manager.window.state('zoomed')
-plt.grid('True')
-plt.show()
+# Maximaliseren op het scherm - werkt niet op elke PC, vandaar 'try'
+try:
+    manager = plt.get_current_fig_manager()
+    manager.window.state('zoomed')
+    plt.show()
+except:
+    plt.show()
