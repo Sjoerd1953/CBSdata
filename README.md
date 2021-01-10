@@ -1,2 +1,5 @@
 # CBSdata
-Met behulp van deze scripts kunnen datasets van het CBS (Centraal Bureau voor Statistiek) worden gedownload en zo nodig bewerkt voor grafische weergave. Alle datasets van het CBS zijn te vinden op [Statline](https://opendata.cbs.nl/statline/#/CBS/nl/)
+With these scripts data from the Dutch Statistics Office can be downloaded, editted and used for creating graphs and tables.
+
+The first step is to download data with the script CBS_001_store_data_P. The choosen dataset wil downloaded into a pandas dataframe.
+Some datasets need editing, others can be used as is.
