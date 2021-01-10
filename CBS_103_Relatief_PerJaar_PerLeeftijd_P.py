@@ -112,28 +112,17 @@ fill3min = []
 fill4max = []
 fill4min = []
 
-# factor voor de berekening van het 99% betrouwbaarheidsinterval in de grafiek
-# standaarddeviatie is std_err * sqrt(n) (n = 10: 2010 t/m 2019)
-bi = 2.576
 
 for jaar in range(2010, 2021):
     jaren.append(jaar)
 
     trend1.append(intercept1 + slope1 * jaar)
-    fill1max.append(intercept1 + slope1 * jaar + bi * m.sqrt(10) * std_err1)
-    fill1min.append(intercept1 + slope1 * jaar - bi * m.sqrt(10) * std_err1)
 
     trend2.append(intercept2 + slope2 * jaar)
-    fill2max.append(intercept2 + slope2 * jaar + bi * m.sqrt(10) * std_err2)
-    fill2min.append(intercept2 + slope2 * jaar - bi * m.sqrt(10) * std_err2)
 
     trend3.append(intercept3 + slope3 * jaar)
-    fill3max.append(intercept3 + slope3 * jaar + bi * m.sqrt(10) * std_err3)
-    fill3min.append(intercept3 + slope3 * jaar - bi * m.sqrt(10) * std_err3)
 
     trend4.append(intercept4 + slope4 * jaar)
-    fill4max.append(intercept4 + slope4 * jaar + bi * m.sqrt(10) * std_err4)
-    fill4min.append(intercept4 + slope4 * jaar - bi * m.sqrt(10) * std_err4)
 
 # grafiek maken
 fig, axs = plt.subplots(2, 2)
@@ -141,19 +130,15 @@ fig, axs = plt.subplots(2, 2)
 # op elke as de actuele waardes en de regressielijn tekenen
 axs[0, 0].plot(df_fractie['Jaar'], df_fractie['Totaal leeftijd'], label='Per jaar')
 axs[0, 0].plot(jaren, trend1, '--r', label='Trend 2010 - 2019')
-axs[0, 0].fill_between(jaren, fill1max, fill1min, color='r', alpha=0.1)
 
 axs[0, 1].plot(df_fractie['Jaar'], df_fractie['0 tot 65 jaar'], label='Per jaar')
 axs[0, 1].plot(jaren, trend2, '--r', label='Trend 2010 - 2019')
-axs[0, 1].fill_between(jaren, fill2max, fill2min, color='r', alpha=0.1)
 
 axs[1, 0].plot(df_fractie['Jaar'], df_fractie['65 tot 80 jaar'], label='Per jaar')
 axs[1, 0].plot(jaren, trend3, '--r', label='Trend 2010 - 2019')
-axs[1, 0].fill_between(jaren, fill3max, fill3min, color='r', alpha=0.1)
 
 axs[1, 1].plot(df_fractie['Jaar'], df_fractie['80 jaar of ouder'], label='Per jaar')
 axs[1, 1].plot(jaren, trend4, '--r', label='Trend 2010 - 2019')
-axs[1, 1].fill_between(jaren, fill4max, fill4min, color='r', alpha=0.1)
 
 fig.suptitle('Relatieve sterfte per jaar en per leeftijdscategorie t/m week: ' + str(max_week) + '\n (2010 t/m 2020)',
              fontsize=25)
@@ -163,25 +148,25 @@ fig.text(0.04, 0.5, 'Relatieve sterfte (%)', va='center', rotation='vertical', f
 
 axs[0, 0].set_title('Alle leeftijden')
 axs[0, 0].set_xlim(2010, 2020)
-axs[0, 0].set_ylim(0.6, 1)
+axs[0, 0].set_ylim(0.7, 1)
 axs[0, 0].grid()
 axs[0, 0].legend()
 
 axs[0, 1].set_title('0 tot 65 jaar')
 axs[0, 1].set_xlim(2010, 2020)
-axs[0, 1].set_ylim(0.12, 0.16)
+axs[0, 1].set_ylim(0.14, 0.18)
 axs[0, 1].grid()
 axs[0, 1].legend()
 
 axs[1, 0].set_title('65 tot 80 jaar')
 axs[1, 0].set_xlim(2010, 2020)
-axs[1, 0].set_ylim(1.4, 2)
+axs[1, 0].set_ylim(1.7, 2.5)
 axs[1, 0].grid()
 axs[1, 0].legend()
 
 axs[1, 1].set_title('80 jaar en ouder')
 axs[1, 1].set_xlim(2010, 2020)
-axs[1, 1].set_ylim(9, 10.25)
+axs[1, 1].set_ylim(10, 12)
 axs[1, 1].grid()
 axs[1, 1].legend()
 

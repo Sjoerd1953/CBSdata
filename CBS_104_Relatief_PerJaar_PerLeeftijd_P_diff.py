@@ -48,6 +48,9 @@ df_weekdata = pd.read_pickle(dataPath)
 df_2020 = df_weekdata[df_weekdata['Jaar'] == 2020]
 max_week = max(df_2020['Week'])
 
+# of andere week
+# max_week =
+
 # Cumulatieve som per jaar, geslacht en leeftijd.
 df_weekdata['Overledenen Totaal'] = df_weekdata.groupby(['Jaar', 'Geslacht', 'Leeftijd'])['Overledenen'].cumsum(axis=0)
 
@@ -125,28 +128,30 @@ fig.suptitle('Verandering in relatieve sterfte per jaar en per leeftijdscategori
 fig.text(0.5, 0.04, 'Jaar', ha='center', fontsize=15)
 fig.text(0.04, 0.5, 'Verandering in relatieve sterfte tov voorgaand jaar(%)', va='center', rotation='vertical', fontsize=15)
 
+sf = 4.5
+
 # Assen configureren
 axs[0, 0].set_title('Alle leeftijden')
 axs[0, 0].set_xlim(2010, 2020)
-axs[0, 0].set_ylim(tot_gem - 3.5 * tot_std, tot_gem + 3.5 * tot_std)
+axs[0, 0].set_ylim(tot_gem - sf * tot_std, tot_gem + sf * tot_std)
 axs[0, 0].grid()
 axs[0, 0].legend(loc=2, fontsize=8)
 
 axs[0, 1].set_title('0 tot 65 jaar')
 axs[0, 1].set_xlim(2010, 2020)
-axs[0, 1].set_ylim(t65_gem - 3.5 * t65_std, t65_gem + 3.5 * t65_std)
+axs[0, 1].set_ylim(t65_gem - sf * t65_std, t65_gem + sf * t65_std)
 axs[0, 1].grid()
 axs[0, 1].legend(loc=2, fontsize=8)
 
 axs[1, 0].set_title('65 tot 80 jaar')
 axs[1, 0].set_xlim(2010, 2020)
-axs[1, 0].set_ylim(v65t80_gem - 3.5 * v65t80_std, v65t80_gem + 3.5 * v65t80_std)
+axs[1, 0].set_ylim(v65t80_gem - sf * v65t80_std, v65t80_gem + sf * v65t80_std)
 axs[1, 0].grid()
 axs[1, 0].legend(loc=2, fontsize=8)
 
 axs[1, 1].set_title('80 jaar en ouder')
 axs[1, 1].set_xlim(2010, 2020)
-axs[1, 1].set_ylim(v80_gem - 3.5 * v80_std, v80_gem + 3.5 * v80_std)
+axs[1, 1].set_ylim(v80_gem - sf * v80_std, v80_gem + sf * v80_std)
 axs[1, 1].grid()
 axs[1, 1].legend(loc=2, fontsize=8)
 
