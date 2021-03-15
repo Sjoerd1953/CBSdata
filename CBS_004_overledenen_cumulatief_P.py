@@ -30,7 +30,7 @@ df_weekdata = pd.read_pickle(dataPath)
 df_2020 = df_weekdata[
     (df_weekdata['Geslacht'] == 'Totaal mannen en vrouwen') &
     (df_weekdata['Leeftijd'] == 'Totaal leeftijd') &
-    (df_weekdata['Jaar'] == 2020)
+    (df_weekdata['Jaar'] == 2021)
     ]
 maxweek = (max(df_2020['Week']))
 
@@ -51,7 +51,7 @@ df_graph_80plus['Overledenen_cum'] = df_graph_80plus.groupby(['Jaar'])['Overlede
 df_graph_totaal['Overledenen_cum'] = df_graph_totaal.groupby(['Jaar'])['Overledenen'].cumsum(axis=0)
 
 # De in de grafiek gewenste jaren
-jaren = ['2020', '2019', '2018', '2017', '2016']
+jaren = ['2021', '2020', '2019', '2018', '2017']
 
 # Pivot tabelen maken met de voor grafiek noodzakelijke gegevens
 pivot_totaal = df_graph_totaal[(df_graph_totaal['Jaar'].isin(jaren))].pivot('Week', 'Jaar', 'Overledenen_cum')
@@ -75,7 +75,7 @@ fig, axs = plt.subplots(2, 2)
 # Assen en lijnen configureren
 colors = ['#ff00bf', '#00ff00', '#0000ff', '#ff0000', '#000000']
 linestyles = ['--', '--', '--', '--', '-']
-xlim = (1, 52)
+xlim = (1, 53)
 ylim = 0
 ylabel = 'Aantal'
 
@@ -96,7 +96,7 @@ axs[1, 1].set_title('80 jaar en ouder')
 axs[1, 1].legend(loc='best', fontsize=8)
 
 # Titel voor de 4 subgrafieken toevoegen
-fig.suptitle('Totaal aantal sterfgevallen. Totaal en naar leeftijdsgroep. 2020 t/m week ' + str(maxweek), fontsize=15)
+fig.suptitle('Totaal aantal sterfgevallen. Totaal en naar leeftijdsgroep. 2021 t/m week ' + str(maxweek), fontsize=15)
 
 # Text buiten het plotgebied (0,0 is bottom left, 1.1 is top right)
 plt.gcf().text(0.85, 0.05, 'Bron: CBS, dataset 70895ned', fontsize=6)

@@ -8,12 +8,12 @@
 #   1.1     13-11-2020: Scherm maximaliseren aangepast
 #   1.2     21-11-2020: Trendlijn 2010 - 2019 met betrouwbaarheids interval
 #                       maken mbv scipy.stats
+#   1.3     15-03-2021: max_week fixed as 52 although 2020 had 53 weeks
 #
 # =========================================================================
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import math as m
 from scipy import stats
 from pathlib import Path
 
@@ -50,8 +50,9 @@ dataPath = Path(str(root) + '/data/df_weekdata.dataframe')
 df_weekdata = pd.read_pickle(dataPath)
 
 # Laatste rapportageweek lopende jaar
-df_2020 = df_weekdata[df_weekdata['Jaar'] == 2020]
-max_week = max(df_2020['Week'])
+# df_2020 = df_weekdata[df_weekdata['Jaar'] == 2020]
+# max_week = max(df_2020['Week'])
+max_week = 52
 
 # Cumulatieve som per jaar, geslacht en leeftijd.
 df_weekdata['Overledenen Totaal'] = df_weekdata.groupby(['Jaar', 'Geslacht', 'Leeftijd'])['Overledenen'].cumsum(axis=0)
@@ -79,7 +80,6 @@ df_weekdata_pivot = df_weekdata_pivot.set_index('Jaar')
 df_fractie = df_weekdata_pivot / df_grafiekdata * 100
 df_fractie = df_fractie.reset_index()
 
-
 # data van 2010 t/m 2019 in lists zetten
 x = df_fractie['Jaar'][0:10].tolist()
 y1 = df_fractie['Totaal leeftijd'][0:10].tolist()
@@ -100,18 +100,17 @@ trend2 = []
 trend3 = []
 trend4 = []
 
-fill1max = []
-fill1min = []
-
-fill2max = []
-fill2min = []
-
-fill3max = []
-fill3min = []
-
-fill4max = []
-fill4min = []
-
+# fill1max = []
+# fill1min = []
+#
+# fill2max = []
+# fill2min = []
+#
+# fill3max = []
+# fill3min = []
+#
+# fill4max = []
+# fill4min = []
 
 for jaar in range(2010, 2021):
     jaren.append(jaar)
@@ -148,25 +147,25 @@ fig.text(0.04, 0.5, 'Relatieve sterfte (%)', va='center', rotation='vertical', f
 
 axs[0, 0].set_title('Alle leeftijden')
 axs[0, 0].set_xlim(2010, 2020)
-axs[0, 0].set_ylim(0.7, 1)
+# axs[0, 0].set_ylim(0.7, 1)
 axs[0, 0].grid()
 axs[0, 0].legend()
 
 axs[0, 1].set_title('0 tot 65 jaar')
 axs[0, 1].set_xlim(2010, 2020)
-axs[0, 1].set_ylim(0.14, 0.18)
+# axs[0, 1].set_ylim(0.14, 0.18)
 axs[0, 1].grid()
 axs[0, 1].legend()
 
 axs[1, 0].set_title('65 tot 80 jaar')
 axs[1, 0].set_xlim(2010, 2020)
-axs[1, 0].set_ylim(1.7, 2.5)
+# axs[1, 0].set_ylim(1.7, 2.5)
 axs[1, 0].grid()
 axs[1, 0].legend()
 
 axs[1, 1].set_title('80 jaar en ouder')
 axs[1, 1].set_xlim(2010, 2020)
-axs[1, 1].set_ylim(10, 12)
+# axs[1, 1].set_ylim(10, 12)
 axs[1, 1].grid()
 axs[1, 1].legend()
 

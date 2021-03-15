@@ -5,6 +5,7 @@
 #
 #   Versiegeschiedenis:
 #   1.0     22-11-2020: Eerste versie
+#   1.1     15-03-2021: max_week fixed as 52 although 2020 had 53 weeks
 #
 # =========================================================================
 
@@ -45,8 +46,9 @@ dataPath = Path(str(root) + '/data/df_weekdata.dataframe')
 df_weekdata = pd.read_pickle(dataPath)
 
 # Laatste rapportageweek lopende jaar
-df_2020 = df_weekdata[df_weekdata['Jaar'] == 2020]
-max_week = max(df_2020['Week'])
+# df_2020 = df_weekdata[df_weekdata['Jaar'] == 2020]
+# max_week = max(df_2020['Week'])
+max_week = 52
 
 # of andere week
 # max_week =

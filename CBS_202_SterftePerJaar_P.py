@@ -43,7 +43,7 @@ inwoners = 17282163
 fractie = round(overledenen / inwoners * 100, 3)
 df_grafiekdata.at[120, 'Fractie'] = fractie  # 120 is de index voor het jaar 2019
 
-overledenen = 167013  # t/m week 52
+overledenen = 168566  # t/m week 52
 inwoners = 17407585
 fractie = round(overledenen / inwoners * 100, 3)
 df_grafiekdata.at[121, 'Jaar'] = 2020  # 121 is de index voor het jaar 2020
@@ -76,19 +76,19 @@ ax.annotate(
 )
 ax.annotate(
     '1993 - Griepgolf', fontsize=8
-    , xy=(1993, 0.91), xytext=(1997, 1.02)
+    , xy=(1993, 0.91), xytext=(1992, 1.02)
     , arrowprops=dict(facecolor='green', edgecolor='green', width=1, headwidth=4, headlength=4, shrink=0.07)
 )
 
 ax.annotate(
     '2018 - Griepgolf', fontsize=8
-    , xy=(2018, 0.89), xytext=(2009, 1)
+    , xy=(2018, 0.89), xytext=(2006, 1.02)
     , arrowprops=dict(facecolor='green', edgecolor='green', width=1, headwidth=4, headlength=4, shrink=0.07)
 )
 
 ax.annotate(
     '2020 - Corona pandemie', fontsize=8
-    , xy=(2020, 0.96), xytext=(2007, 1.1)
+    , xy=(2020, 0.96), xytext=(2005, 1.2)
     , arrowprops=dict(facecolor='green', edgecolor='green', width=1, headwidth=4, headlength=4, shrink=0.07)
 )
 
