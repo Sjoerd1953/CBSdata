@@ -80,6 +80,8 @@ df_weekdata_pivot = df_weekdata_pivot.set_index('Jaar')
 df_fractie = df_weekdata_pivot / df_grafiekdata * 100
 df_fractie = df_fractie.reset_index()
 
+print(df_fractie)
+
 # data van 2010 t/m 2019 in lists zetten
 x = df_fractie['Jaar'][0:10].tolist()
 y1 = df_fractie['Totaal leeftijd'][0:10].tolist()
@@ -99,18 +101,6 @@ trend1 = []
 trend2 = []
 trend3 = []
 trend4 = []
-
-# fill1max = []
-# fill1min = []
-#
-# fill2max = []
-# fill2min = []
-#
-# fill3max = []
-# fill3min = []
-#
-# fill4max = []
-# fill4min = []
 
 for jaar in range(2010, 2021):
     jaren.append(jaar)

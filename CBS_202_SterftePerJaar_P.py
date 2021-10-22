@@ -5,7 +5,7 @@
 #
 #   Versiegeschiedenis:
 #   1.0     09-11-2020: Eerste versie
-#   1.1     13-11-2020: Schemrm maximaliseren aangepast
+#   1.1     13-11-2020: Scherm maximaliseren aangepast
 #
 # =========================================================================
 
