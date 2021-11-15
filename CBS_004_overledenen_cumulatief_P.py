@@ -7,11 +7,14 @@
 #   1.0     02-11-2020: Eerste versie
 #   1.1     09-11-2020: Ophalen data uit subdirectory
 #   1.2     13-11-2020: Scherm maximaliseren aangepast
+#   1.3     15-11-2021: Huidig jaar en afgelopen 4 jaren automatisch bepaald
+#                       Aanpassing aan Pandas 1.3.4 (jaren als integers)
 #
 # =========================================================================
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import datetime
 from pathlib import Path
 
 # get current directory
@@ -26,13 +29,18 @@ pd.set_option('display.width', None)  # Zet alle kolommen naast elkaar
 dataPath = Path(str(root) + '/data/df_weekdata.dataframe')
 df_weekdata = pd.read_pickle(dataPath)
 
-# Bepaal het hoogste weeknummer voor 2020
-df_2020 = df_weekdata[
+# Bepaal het rapportage weeknummer voor huidige jaar
+nu = datetime.datetime.now()
+datum = nu.date()
+jaar = datum.strftime('%Y')
+jaar = int(jaar)
+
+df_ditjaar = df_weekdata[
     (df_weekdata['Geslacht'] == 'Totaal mannen en vrouwen') &
     (df_weekdata['Leeftijd'] == 'Totaal leeftijd') &
-    (df_weekdata['Jaar'] == 2021)
+    (df_weekdata['Jaar'] == jaar)
     ]
-maxweek = (max(df_2020['Week']))
+maxweek = (max(df_ditjaar['Week']))
 
 # Filteren op Totaal mannen en vrouwen
 df_TotaalMV = df_weekdata[(df_weekdata['Geslacht'] == 'Totaal mannen en vrouwen')]
@@ -50,8 +58,11 @@ df_graph_65tot80['Overledenen_cum'] = df_graph_65tot80.groupby(['Jaar'])['Overle
 df_graph_80plus['Overledenen_cum'] = df_graph_80plus.groupby(['Jaar'])['Overledenen'].cumsum(axis=0)
 df_graph_totaal['Overledenen_cum'] = df_graph_totaal.groupby(['Jaar'])['Overledenen'].cumsum(axis=0)
 
-# De in de grafiek gewenste jaren
-jaren = ['2021', '2020', '2019', '2018', '2017']
+# De in de grafiek gewenste jaren - huidig jaar en 4 voorgaande jaren
+jaren = [jaar]
+for i in range(1, 5):
+    jaar = jaar - 1
+    jaren.append(jaar)
 
 # Pivot tabelen maken met de voor grafiek noodzakelijke gegevens
 pivot_totaal = df_graph_totaal[(df_graph_totaal['Jaar'].isin(jaren))].pivot('Week', 'Jaar', 'Overledenen_cum')
