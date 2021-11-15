@@ -6,6 +6,7 @@
 #   Versiegeschiedenis:
 #   1.0     03-11-2020: Eerste versie
 #   1.1     09-11-2020: Ophalen en wegschrijven data naar subdirectory
+#   1.2     15-11-2021: Typo's aangepast
 #
 # =========================================================================
 
@@ -26,7 +27,6 @@ df_70895ned = pd.read_pickle(dataPath)
 
 # Corrigeren typo's
 df_70895ned['Perioden'] = df_70895ned['Perioden'].replace(['1995 '], '1995')
-df_70895ned['Perioden'] = df_70895ned['Perioden'].replace(['2020 week10'], '2020 week 10')
 
 # Verwijder 1995 week 0 - hoort niet bij 1995
 indexNames = df_70895ned[df_70895ned['Perioden'].str.contains('1995 week 0')].index
